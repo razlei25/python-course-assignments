@@ -8,17 +8,8 @@ logger = logging.getLogger(__name__)
 
 
 class CircleAreaApp:
-    """
-    A small Tkinter app to calculate the area of a circle from a radius input.
-
-    Improvements made:
-    - Encapsulated UI logic into a class for clearer structure and easier testing.
-    - Added type hints and logging.
-    - Accepts numeric input (floats allowed).
-    - On ValueError (non-numeric input) the entry cell turns red and its text becomes the error message.
-    - On focus into the entry, the placeholder/error is cleared and the entry style is restored.
-    """
-
+    
+    
     ERROR_NOT_NUMBER = "Please enter a number"
     ERROR_NEGATIVE = "Please enter a non-negative number for radius."
 
