@@ -93,20 +93,20 @@ class ShapeAreaCalculator:
     
     def validate_positive_integer(self, value, entry_widget):
         """Validate if value is a positive integer"""
+        if not value:  # Empty string
+            entry_widget.config(bg="#FC8181")
+            return False
+            
         try:
             num = int(value)
             if num <= 0:
                 entry_widget.config(bg="#FC8181")
-                entry_widget.delete(0, tk.END)
-                entry_widget.insert(0, "Must be positive integer")
                 return False
             else:
                 entry_widget.config(bg="white")
                 return True
         except ValueError:
             entry_widget.config(bg="#FC8181")
-            entry_widget.delete(0, tk.END)
-            entry_widget.insert(0, "Must be positive integer")
             return False
     
     def show_polygon_inputs(self):
@@ -127,7 +127,8 @@ class ShapeAreaCalculator:
             self.input_frame,
             font=("Helvetica", 12),
             width=30,
-            justify='center'
+            justify='center',
+            bg="white"
         )
         self.sides_entry.pack(pady=5)
         
@@ -145,7 +146,8 @@ class ShapeAreaCalculator:
             self.input_frame,
             font=("Helvetica", 12),
             width=30,
-            justify='center'
+            justify='center',
+            bg="white"
         )
         self.length_entry.pack(pady=5)
         
@@ -184,7 +186,8 @@ class ShapeAreaCalculator:
             self.input_frame,
             font=("Helvetica", 12),
             width=30,
-            justify='center'
+            justify='center',
+            bg="white"
         )
         self.radius_entry.pack(pady=5)
         
@@ -207,18 +210,23 @@ class ShapeAreaCalculator:
     
     def calculate_polygon_area(self):
         """Calculate area of equilateral polygon"""
-        sides_valid = self.validate_positive_integer(
-            self.sides_entry.get(),
-            self.sides_entry
-        )
-        length_valid = self.validate_positive_integer(
-            self.length_entry.get(),
-            self.length_entry
-        )
+        sides_value = self.sides_entry.get()
+        length_value = self.length_entry.get()
+        
+        sides_valid = self.validate_positive_integer(sides_value, self.sides_entry)
+        length_valid = self.validate_positive_integer(length_value, self.length_entry)
+        
+        if not sides_valid:
+            self.sides_entry.delete(0, tk.END)
+            self.sides_entry.insert(0, "Must be positive integer")
+            
+        if not length_valid:
+            self.length_entry.delete(0, tk.END)
+            self.length_entry.insert(0, "Must be positive integer")
         
         if sides_valid and length_valid:
-            n = int(self.sides_entry.get())
-            s = int(self.length_entry.get())
+            n = int(sides_value)
+            s = int(length_value)
             
             # Formula for area of regular polygon: (n * s^2) / (4 * tan(π/n))
             area = (n * s**2) / (4 * math.tan(math.pi / n))
@@ -229,13 +237,16 @@ class ShapeAreaCalculator:
     
     def calculate_circle_area(self):
         """Calculate area of circle"""
-        radius_valid = self.validate_positive_integer(
-            self.radius_entry.get(),
-            self.radius_entry
-        )
+        radius_value = self.radius_entry.get()
+        
+        radius_valid = self.validate_positive_integer(radius_value, self.radius_entry)
+        
+        if not radius_valid:
+            self.radius_entry.delete(0, tk.END)
+            self.radius_entry.insert(0, "Must be positive integer")
         
         if radius_valid:
-            r = int(self.radius_entry.get())
+            r = int(radius_value)
             area = math.pi * r**2
             
             self.result_label.config(
