@@ -6,7 +6,7 @@ class ShapeAreaCalculator:
     def __init__(self, root):
         self.root = root
         self.root.title("Shape Area Calculator")
-        self.root.geometry("500x450")
+        self.root.geometry("500x500")
         self.root.configure(bg="#6B46C1")  # Purple background
         
         # Main container
@@ -73,17 +73,22 @@ class ShapeAreaCalculator:
         
         # Input frame (will be populated based on shape choice)
         self.input_frame = tk.Frame(self.main_frame, bg="#6B46C1")
-        self.input_frame.pack(pady=20, fill='both', expand=True)
+        self.input_frame.pack(pady=20)
+        
+        # Result frame
+        self.result_frame = tk.Frame(self.main_frame, bg="#6B46C1")
+        self.result_frame.pack(pady=20)
         
         # Result label
         self.result_label = tk.Label(
-            self.main_frame,
+            self.result_frame,
             text="",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", 16, "bold"),
             bg="#6B46C1",
-            fg="#FBD38D"
+            fg="#FFD700",
+            wraplength=400
         )
-        self.result_label.pack(pady=10)
+        self.result_label.pack()
     
     def clear_input_frame(self):
         """Clear all widgets from input frame"""
@@ -121,16 +126,16 @@ class ShapeAreaCalculator:
             bg="#6B46C1",
             fg="white"
         )
-        sides_label.pack(pady=5)
+        sides_label.grid(row=0, column=0, pady=5, padx=10, sticky='e')
         
         self.sides_entry = tk.Entry(
             self.input_frame,
             font=("Helvetica", 12),
-            width=30,
+            width=20,
             justify='center',
             bg="white"
         )
-        self.sides_entry.pack(pady=5)
+        self.sides_entry.grid(row=0, column=1, pady=5, padx=10)
         
         # Side length
         length_label = tk.Label(
@@ -140,16 +145,16 @@ class ShapeAreaCalculator:
             bg="#6B46C1",
             fg="white"
         )
-        length_label.pack(pady=5)
+        length_label.grid(row=1, column=0, pady=5, padx=10, sticky='e')
         
         self.length_entry = tk.Entry(
             self.input_frame,
             font=("Helvetica", 12),
-            width=30,
+            width=20,
             justify='center',
             bg="white"
         )
-        self.length_entry.pack(pady=5)
+        self.length_entry.grid(row=1, column=1, pady=5, padx=10)
         
         # Calculate button
         calc_btn = tk.Button(
@@ -166,7 +171,7 @@ class ShapeAreaCalculator:
             cursor="hand2",
             command=self.calculate_polygon_area
         )
-        calc_btn.pack(pady=20)
+        calc_btn.grid(row=2, column=0, columnspan=2, pady=20)
     
     def show_circle_inputs(self):
         """Display input field for circle"""
@@ -180,16 +185,16 @@ class ShapeAreaCalculator:
             bg="#6B46C1",
             fg="white"
         )
-        radius_label.pack(pady=5)
+        radius_label.grid(row=0, column=0, pady=5, padx=10, sticky='e')
         
         self.radius_entry = tk.Entry(
             self.input_frame,
             font=("Helvetica", 12),
-            width=30,
+            width=20,
             justify='center',
             bg="white"
         )
-        self.radius_entry.pack(pady=5)
+        self.radius_entry.grid(row=0, column=1, pady=5, padx=10)
         
         # Calculate button
         calc_btn = tk.Button(
@@ -206,12 +211,14 @@ class ShapeAreaCalculator:
             cursor="hand2",
             command=self.calculate_circle_area
         )
-        calc_btn.pack(pady=20)
+        calc_btn.grid(row=1, column=0, columnspan=2, pady=20)
     
     def calculate_polygon_area(self):
         """Calculate area of equilateral polygon"""
         sides_value = self.sides_entry.get()
         length_value = self.length_entry.get()
+        
+        print(f"Polygon - Sides: {sides_value}, Length: {length_value}")  # Debug
         
         sides_valid = self.validate_positive_integer(sides_value, self.sides_entry)
         length_valid = self.validate_positive_integer(length_value, self.length_entry)
@@ -231,13 +238,15 @@ class ShapeAreaCalculator:
             # Formula for area of regular polygon: (n * s^2) / (4 * tan(π/n))
             area = (n * s**2) / (4 * math.tan(math.pi / n))
             
-            self.result_label.config(
-                text=f"Area: {area:.2f} square units"
-            )
+            result_text = f"Area: {area:.2f} square units"
+            print(f"Setting result: {result_text}")  # Debug
+            self.result_label.config(text=result_text)
     
     def calculate_circle_area(self):
         """Calculate area of circle"""
         radius_value = self.radius_entry.get()
+        
+        print(f"Circle - Radius: {radius_value}")  # Debug
         
         radius_valid = self.validate_positive_integer(radius_value, self.radius_entry)
         
@@ -249,9 +258,9 @@ class ShapeAreaCalculator:
             r = int(radius_value)
             area = math.pi * r**2
             
-            self.result_label.config(
-                text=f"Area: {area:.2f} square units"
-            )
+            result_text = f"Area: {area:.2f} square units"
+            print(f"Setting result: {result_text}")  # Debug
+            self.result_label.config(text=result_text)
 
 def main():
     root = tk.Tk()
