@@ -6,7 +6,7 @@ class ShapeAreaCalculator:
     def __init__(self, root):
         self.root = root
         self.root.title("Shape Area Calculator")
-        self.root.geometry("500x500")
+        self.root.geometry("500x600")  # Increased height from 500 to 600
         self.root.configure(bg="#6B46C1")  # Purple background
         
         # Main container
@@ -96,7 +96,7 @@ class ShapeAreaCalculator:
             widget.destroy()
         self.result_label.config(text="")
     
-    def validate_positive_integer(self, value, entry_widget):
+    def validate_positive_integer(self, value, entry_widget, min_value=1):
         """Validate if value is a positive integer"""
         if not value:  # Empty string
             entry_widget.config(bg="#FC8181")
@@ -104,7 +104,7 @@ class ShapeAreaCalculator:
             
         try:
             num = int(value)
-            if num <= 0:
+            if num < min_value:
                 entry_widget.config(bg="#FC8181")
                 return False
             else:
@@ -220,12 +220,14 @@ class ShapeAreaCalculator:
         
         print(f"Polygon - Sides: {sides_value}, Length: {length_value}")  # Debug
         
-        sides_valid = self.validate_positive_integer(sides_value, self.sides_entry)
-        length_valid = self.validate_positive_integer(length_value, self.length_entry)
+        # Validate sides (must be > 2)
+        sides_valid = self.validate_positive_integer(sides_value, self.sides_entry, min_value=3)
+        # Validate length (must be > 0)
+        length_valid = self.validate_positive_integer(length_value, self.length_entry, min_value=1)
         
         if not sides_valid:
             self.sides_entry.delete(0, tk.END)
-            self.sides_entry.insert(0, "Must be positive integer")
+            self.sides_entry.insert(0, "Must be integer > 2")
             
         if not length_valid:
             self.length_entry.delete(0, tk.END)
@@ -248,7 +250,7 @@ class ShapeAreaCalculator:
         
         print(f"Circle - Radius: {radius_value}")  # Debug
         
-        radius_valid = self.validate_positive_integer(radius_value, self.radius_entry)
+        radius_valid = self.validate_positive_integer(radius_value, self.radius_entry, min_value=1)
         
         if not radius_valid:
             self.radius_entry.delete(0, tk.END)
