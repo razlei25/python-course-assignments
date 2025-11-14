@@ -6,11 +6,11 @@
 * The program has been tweaked but no third-party python libraries have been imported to replace original code used for calculations, since the calculations are very basic.
 
 
-## Dependencies:
+## Dependencies
 * none
 
 
-## AI usage:
+## AI usage
 Model: GPT-5 mini (Visual Studio Code Copilot)
 Prompts:
 * “Create a new file in folder "day03" that includes the code from "shape_area_calculator.py" in folder "day02", but only the part of the program that runs the calculations, without the GUI part. Then, in the "main.py" file in folder "day03", write code that will run the shape area calculator program from the same folder, implementing it through a GUI in the same way that it is implemented in the original file in "day02" folder.”
