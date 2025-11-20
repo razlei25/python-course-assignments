@@ -2,7 +2,7 @@
 
 
 ## Foreword
-* The program is a shape area calculator based off of the program in the shape_area_calculator.py file in the day02 folder. The calculation function (the “business logic”) is saved in this folder (day03) in shape_area_calculator.py and can be used via GUI by running main.py.
+* The program is a shape area calculator based off of the program in the shape_area_calculator.py file in the day02 folder. The calculation function (the “business logic”) is saved in this folder (day03) in shape_area_calculator_clean.py and can be used via GUI by running main.py.
 * The program has been tweaked but no third-party python libraries have been imported to replace original code used for calculations, since the calculations are very basic.
 
 

@@ -8,7 +8,6 @@ Provides:
 This file contains only calculation logic and validation via exceptions.
 """
 from typing import Union
-from circle_area import area
 import math
 
 
