@@ -52,7 +52,7 @@ def select_file(entry_widget, ticker_label, start_entry, end_entry):
 def on_compute(csv_entry, ticker_label, start_entry, end_entry, period_label, result_label):
     csv_path = csv_entry.get().strip()
     if not csv_path:
-        csv_path = os.path.join(os.path.dirname(__file__), "aapl_us_d.csv")
+        csv_path = os.path.join(os.path.dirname(__file__), "stock_data", "aapl_us_d.csv")
     if not os.path.isfile(csv_path):
         messagebox.showerror("File not found", f"CSV not found:\n{csv_path}")
         return
@@ -117,7 +117,7 @@ def build_gui():
     ttk.Label(frm, text="CSV file (optional)").grid(column=0, row=2, sticky="w")
     csv_entry = ttk.Entry(frm, width=56)
     csv_entry.grid(column=0, row=3, sticky="w")
-    default_csv = os.path.join(os.path.dirname(__file__), "aapl_us_d.csv")
+    default_csv = os.path.join(os.path.dirname(__file__), "stock_data", "aapl_us_d.csv")
     csv_entry.insert(0, default_csv)
     # placeholder ticker label to be updated
     ticker_lbl = ttk.Label(frm, text=f"Stock ticker symbol: {_get_ticker_from_filename(default_csv)}")

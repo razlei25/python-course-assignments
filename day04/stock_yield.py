@@ -138,7 +138,7 @@ def calculate_average_annual_yield(csv_path: Optional[str], years: int) -> float
     start = latest date - years (approx) and selecting first row on/after start.
     """
     if csv_path is None:
-        csv_path = os.path.join(os.path.dirname(__file__), "aapl_us_d.csv")
+        csv_path = os.path.join(os.path.dirname(__file__), "stock_data", "aapl_us_d.csv")
     min_d, max_d = get_csv_date_range(csv_path)
     # approximate start date one year * years back
     approx_start = (pd.to_datetime(max_d) - pd.DateOffset(years=years)).date()
