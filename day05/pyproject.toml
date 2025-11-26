@@ -1,0 +1,7 @@
+[project]
+name = "day05"
+version = "0.1.0"
+description = "Day 05 assignment"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
