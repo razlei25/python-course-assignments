@@ -1,3 +1,7 @@
+# To test, run (from root*) in cammand line: python -m unittest day05.tests_word_changer -v
+# Alternatively, run this file directly: day05/tests_word_changer.py 
+# * Run from project root = python-course-assignments
+
 import os
 import io
 import runpy

@@ -1,38 +1,19 @@
 ```markdown
 # Assignment 5 processes
 
-## Foreword
-This folder is a skeleton for Day 05 of the course. Implement the business logic in `program_logic.py` and the GUI in `program_GUI.py`.
+## Program
+**Word Changer Game** is a game in which the user inputs of two words of the same length and in each turn changes one letter in the first word in order to eventually get to the other word.
 
-## Dependencies
-- Python 3.8+
+The interaction is through the command line.
 
-Add any extra dependencies to `pyproject.toml` (the `dependencies` array) and document install commands here.
+Run the program in 'word_changer_game.py'
 
-Install example (PowerShell):
-```
-python -m pip install --upgrade pip
-# if you add dependencies, install them here, for example:
-# python -m pip install pandas
-```
+## Operation
+- Dependencies: None other than Python standard libraries.
+- System: I am using Python 3.8 on Windows
+- Tests: 'python -m unittest day05.tests #from root'
 
-## How to run
-- Run tests (once written):
-```
-python -m unittest day05.tests
-```
-- Run the GUI (after implementing `program_logic.py`):
-```
-python day05/program_GUI.py
-```
 
-## AI usage
-When asking an AI assistant to edit files in this folder, prefer prompts that:
-- Ask to implement pure business logic in `program_logic.py`.
-- Keep GUI changes in `program_GUI.py` limited to wiring inputs/outputs to the business logic.
-
-Example prompts:
-- "Implement `compute_something(arg1, arg2)` in `day05/program_logic.py` with input validation and add tests in `day05/tests.py`."
-- "Update `day05/program_GUI.py` to collect user inputs, call `program_logic.compute_something`, and display the result."
-
-``` 
+## AI prompts (Visual Studio Code copilot GPT-5 mini)
+- Create a day05 folder using "init". It should contain all the usual files I ten to have in the course folders, including a .py file for the business logic of the program, another .py file for the GUI of the program (which will call the business logic file), a .toml file with dependencies, a README.md with explanations (as usual, a description of the program, dependencies and how to install them and AI chat prompts used). For now, only create the folders and the files, later I will write the code for the program which will indicate how to populate the other files.
+- Create tests to test word_changer_game.py program
