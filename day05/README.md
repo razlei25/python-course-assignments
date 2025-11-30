@@ -2,7 +2,7 @@
 # Assignment 5 processes
 
 ## Program
-**Word Changer Game** is a game in which the user inputs of two words of the same length and in each turn changes one letter in the first word in order to eventually get to the other word.
+**Word Changer Game** is a game in which the user inputs two words of the same length and in each turn changes one letter in the first word in order to eventually get to the other word.
 
 The interaction is through the command line.
 
@@ -11,7 +11,7 @@ Run the program in 'word_changer_game.py'
 ## Operation
 - Dependencies: None other than Python standard libraries.
 - System: I am using Python 3.8 on Windows
-- Tests: 'python -m unittest day05.tests #from root'
+- Tests: '''python -m unittest day05.tests #from root'''
 
 
 ## AI prompts (Visual Studio Code copilot GPT-5 mini)
