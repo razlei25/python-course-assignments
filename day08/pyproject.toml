@@ -4,4 +4,11 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.8"
-dependencies = []
+dependencies = [
+	"pandas",
+	"numpy",
+	"matplotlib",
+	"openpyxl",
+	"python-bidi>=0.6.7",
+	"arabic-reshaper>=3.0.0",
+]
