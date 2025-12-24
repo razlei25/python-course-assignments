@@ -26,6 +26,8 @@ This project requires the following Python packages (listed in `pyproject.toml`)
 - arabic-reshaper (for right-to-left text support, if needed)
 
 **To install dependencies:**
+
+
 If you are using the provided virtual environment, run:
 
 ```
