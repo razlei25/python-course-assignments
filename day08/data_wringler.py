@@ -98,11 +98,17 @@ plt.close()
 
 # --- IMAGE 2: Side by side pie charts ---
 municipal_counts_filtered = df['municipal_status'].value_counts()
-pop_by_status = df. groupby('municipal_status')['population'].sum()
+pop_by_status = df.groupby('municipal_status')['population'].sum()
+
+# Ensure both use the same category order
+categories = municipal_counts_filtered.index
+pop_by_status = pop_by_status.reindex(categories)
 
 # Fix Hebrew labels
-fixed_municipal_labels = [fix_hebrew_text(label) for label in municipal_counts_filtered.index]
-fixed_pop_labels = [fix_hebrew_text(label) for label in pop_by_status.index]
+fixed_labels = [fix_hebrew_text(label) for label in categories]
+
+# Define consistent colors for each category
+colors = plt.cm.tab10(range(len(categories)))
 
 # Custom autopct function to show both count/value and percentage
 def make_autopct_count(values):
@@ -117,21 +123,21 @@ def make_autopct_pop(values):
         total = sum(values)
         val = int(round(pct*total/100.0))
         # Format large numbers with commas
-        return f'{val: ,}\n({pct:.1f}%)'
+        return f'{val:,}\n({pct:.1f}%)'
     return my_autopct
 
 fig, axes = plt.subplots(1, 2, figsize=(16,8))
 
 # Left pie chart - number of authorities
-axes[0].pie(municipal_counts_filtered.values, labels=fixed_municipal_labels, 
+axes[0].pie(municipal_counts_filtered.values, labels=fixed_labels, 
             autopct=make_autopct_count(municipal_counts_filtered.values), 
-            startangle=90, textprops={'fontsize': 10})
+            startangle=90, textprops={'fontsize': 10}, colors=colors)
 axes[0].set_title(fix_hebrew_text('מעמד מוניציפלי - מספר רשויות'), fontsize=14, pad=20)
 
 # Right pie chart - population
-axes[1]. pie(pop_by_status. values, labels=fixed_pop_labels, 
+axes[1].pie(pop_by_status.values, labels=fixed_labels, 
             autopct=make_autopct_pop(pop_by_status.values), 
-            startangle=90, textprops={'fontsize': 10})
+            startangle=90, textprops={'fontsize': 10}, colors=colors)
 axes[1].set_title(fix_hebrew_text('מעמד מוניציפלי - סה"כ אוכלוסייה'), fontsize=14, pad=20)
 
 plt.tight_layout()
