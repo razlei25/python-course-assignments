@@ -1,0 +1,6 @@
+pandas
+numpy
+matplotlib
+openpyxl
+python-bidi>=0.6.7
+arabic-reshaper>=3.0.0
